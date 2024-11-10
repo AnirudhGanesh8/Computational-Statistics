@@ -1,0 +1,10 @@
+import plotly.express as px
+import pandas as pd
+df = px.data.iris()
+print("First 10 records:\n", df.head(10))
+print("\nTotal number of rows and columns:", df.shape)
+print("\nColumn names:", df.columns.tolist())
+mean_values = df.mean()
+print("\nMean of all the numerical attributes:")
+for column, mean in mean_values.items():
+    print(f"{column} - Mean = {mean}")
