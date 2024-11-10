@@ -1,0 +1,23 @@
+import plotly.express as px
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from scipy.stats import skew, kurtosis, probplot
+df = px.data.iris()
+attribute = 'sepal_length'
+print(f"Printing the First Five Records of '{attribute}':")
+print(df[[attribute]].head())
+plt.figure(figsize=(12, 6))
+sns.histplot(df[attribute], kde=True, bins=20)
+plt.title(f'Histogram and KDE of {attribute.capitalize()}')
+plt.xlabel(attribute.capitalize())
+plt.ylabel('Frequency')
+plt.show()
+plt.figure(figsize=(8, 6))
+probplot(df[attribute], dist="norm", plot=plt)
+plt.title(f'Probability Plot of {attribute.capitalize()}')
+plt.show()
+attribute_skewness = skew(df[attribute])
+print(f"\nSkewness for {attribute} = {attribute_skewness}")
+attribute_kurtosis = kurtosis(df[attribute])
+print(f"Kurtosis for {attribute} = {attribute_kurtosis}")
